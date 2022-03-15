@@ -61,7 +61,7 @@ def catchHots(html):
         query = { "title":td02a.string ,"createtime": { "$gte": datetime.datetime.combine(datetime.date.today(),datetime.datetime.min.time())} }
         doc_count = weibohscol.count_documents(query)
         if doc_count == 0:
-            unencode_url ='https://s.weibo.com' + urllib.request.unquote(td02a['href'])    # 解码
+            unencode_url ='https://s.weibo.com' + td02a['href'] # urllib.request.unquote(td02a['href'])    # 解码
             item = {'url': unencode_url,'title':td02a.string,'createtime':datetime.datetime.today()}
             x = weibohscol.insert_one(item)  
             table_data.append([td02a.string,'\033[0;32;40m【收录成功】\033[0m'])
